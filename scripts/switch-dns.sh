@@ -1,4 +1,5 @@
-DNS_SERVER=x.x.x.x
+#DNS_SERVER=172.27.128.4
+DNS_SERVER=10.243.199.158
 
 CURRENT=$(sudo networksetup -getdnsservers Wi-Fi 2>/dev/null | tr '\n' ' ' | sed 's/ $//')
 
