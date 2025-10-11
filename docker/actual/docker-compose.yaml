@@ -1,6 +1,6 @@
 services:
   actual_server:
-    image: docker.io/actualbudget/actual-server:latest
+    image: docker.io/actualbudget/actual-server:v25.10.0
     ports:
       - '5006:5006'
       # Uncomment any of the lines below to set configuration options.
