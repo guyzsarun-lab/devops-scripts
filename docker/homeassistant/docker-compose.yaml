@@ -1,0 +1,19 @@
+version: '3'
+services:
+  homeassistant:
+    logging:
+       options:
+         max-size: "1m"
+    container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    volumes:
+      - ./config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    restart: unless-stopped
+    privileged: true
+    ports:
+      - "8123:8123"
