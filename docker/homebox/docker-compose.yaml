@@ -1,0 +1,13 @@
+# https://github.com/sysadminsmedia/homebox
+version: "3.8"
+services:
+  homebox:
+    image: ghcr.io/sysadminsmedia/homebox:latest
+    container_name: homebox
+    restart: unless-stopped
+    ports:
+      - "3100:7745"
+    environment:
+      - TZ=Asia/Bangkok
+    volumes:
+      - ./homebox-data:/data
