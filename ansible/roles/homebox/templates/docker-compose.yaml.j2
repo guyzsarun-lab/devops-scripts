@@ -1,0 +1,17 @@
+# https://github.com/sysadminsmedia/homebox
+services:
+  homebox:
+    image: ghcr.io/sysadminsmedia/homebox:0.21.0
+    container_name: homebox
+    restart: unless-stopped
+    ports:
+      - "3100:7745"
+    environment:
+      - TZ=Asia/Bangkok
+      - HBOX_LOG_LEVEL=error
+      - HBOX_OIDC_ENABLED=
+      - HBOX_OIDC_ISSUER_URL=
+      - HBOX_OIDC_CLIENT_ID=
+      - HBOX_OIDC_CLIENT_SECRET=
+    volumes:
+      -  {{ data_dir }}:/data
