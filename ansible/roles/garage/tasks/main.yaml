@@ -20,9 +20,8 @@
     dest: "{{ app_dir }}/docker-compose.yaml"
     mode: '0644'
 
-- name: Copy Garage config
-  copy:
-    src: templates/config
-    dest: "{{ app_dir }}"
+- name: Render config
+  template:
+    src: templates/config/garage.toml.j2
+    dest: "{{ app_dir }}/config/garage.toml"
     mode: '0644'
-
