@@ -1,0 +1,29 @@
+version: "3"
+services:
+  garage:
+    image: dxflrs/garage:v2.1.0
+    container_name: garage
+    environment:
+      - RUST_LOG=garage=error
+    ports:
+      - "3900:3900"
+      - "3901:3901"
+      - "3902:3902"
+      - "3903:3903"
+    restart: unless-stopped
+    volumes:
+      - ./config/garage.toml:/etc/garage.toml
+      - {{ data_dir }}/meta:/var/lib/garage/meta
+      - {{ data_dir }}/data:/var/lib/garage/data
+
+  webui:
+    image: khairul169/garage-webui:1.1.0
+    container_name: garage-webui
+    restart: unless-stopped
+    ports:
+      - 3909:3909
+    volumes:
+      - ./config/garage.toml:/etc/garage.toml:ro
+    environment:
+      API_BASE_URL: "http://garage:3903"
+      S3_ENDPOINT_URL: "http://garage:3900"
