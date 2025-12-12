@@ -1,0 +1,41 @@
+- name: Create Radicale directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  loop:
+    - "{{ data_dir }}"
+    - "{{ data_dir }}/data"
+    - "{{ data_dir }}/config"
+
+- name: Create Radicale app directories
+  file:
+    path: "{{ app_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: Render users
+  template:
+    src: templates/config/users.j2
+    dest: "{{ data_dir }}/config/users"
+    mode: '0644'
+
+- name: Render docker-compose
+  template:
+    src: templates/docker-compose.yaml.j2
+    dest: "{{ app_dir }}/docker-compose.yaml"
+    mode: '0644'
+
+
+- name: Copy Radicale config
+  copy:
+    src: templates/config/config
+    dest: "{{ data_dir }}/config/config"
+    mode: '0644'
+
+- name: Deploy Radicale with docker-compose
+  community.docker.docker_compose_v2:
+    project_src: "{{ app_dir }}"
+    state: present
+
+
