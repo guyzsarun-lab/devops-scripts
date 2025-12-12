@@ -1,0 +1,11 @@
+---
+- name: Install Garage
+  hosts: ubuntu-server
+  vars:
+    mount_src: /home/devops/nfs_share/garage
+    mount_dest: /mnt/nas/garage
+    data_dir: /mnt/nas/garage
+    app_dir: /app/garage
+  roles:
+    - nas
+    - garage
