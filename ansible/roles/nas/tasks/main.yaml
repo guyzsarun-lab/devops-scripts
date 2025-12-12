@@ -1,0 +1,17 @@
+- name: create mount directory
+  become: yes
+  file:
+    path: "{{ mount_dest }}"
+    state: directory
+    owner: devops
+    group: devops
+    mode: '0775'
+
+- name: Mount an NFS volume
+  become: yes
+  ansible.posix.mount:
+    src: "{{ nfs_server }}:{{ mount_src }}"
+    path: "{{ mount_dest }}"
+    opts: rw,sync
+    state: mounted
+    fstype: nfs
