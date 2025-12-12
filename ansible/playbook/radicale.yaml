@@ -1,0 +1,11 @@
+---
+- name: Install Radicale
+  hosts: app-server
+  vars:
+    mount_src: /home/devops/nfs_share/caldav
+    mount_dest: /mnt/nas/caldav
+    data_dir: /mnt/nas/caldav
+    app_dir: /app/radicale
+  roles:
+    - nas
+    - radicale

@@ -1,0 +1,14 @@
+services:
+  radicale:
+    image: tomsquest/docker-radicale:3.5.9.0
+    container_name: radicale
+    ports:
+      - 5232:5232
+    init: true
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    volumes:
+      - {{ data_dir }}/data:/data
+      - {{ data_dir }}/config:/config:ro
