@@ -1,0 +1,12 @@
+---
+- name: Install Homebox
+  hosts: app-server
+  vars:
+    mount_src: /home/devops/nfs_share/homebox
+    mount_dest: /mnt/nas/homebox
+
+    data_dir: /mnt/nas/homebox
+    app_dir: /app/homebox
+  roles:
+    - nas
+    - homebox
