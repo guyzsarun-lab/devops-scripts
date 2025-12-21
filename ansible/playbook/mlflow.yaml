@@ -1,0 +1,12 @@
+---
+- name: Install mlflow
+  hosts: app-server
+  vars:
+    mount_src: /home/devops/nfs_share/mlflow
+    mount_dest: /mnt/nas/mlflow
+
+    data_dir: /mnt/nas/mlflow
+    app_dir: /app/mlflow
+  roles:
+    - nas
+    - mlflow
