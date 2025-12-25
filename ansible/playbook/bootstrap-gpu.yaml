@@ -1,0 +1,7 @@
+- name: Apply baseline gpu host config
+  hosts: gpu-server
+  become: true
+  roles:
+  - common
+  - zerotier
+  - nvidia.nvidia_driver
